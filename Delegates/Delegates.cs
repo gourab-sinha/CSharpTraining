@@ -12,9 +12,13 @@ namespace PracticeTest
     delegate void GetDetails();
     class Program
     {
-        public void Details()
+        public void Show1()
         {
-            Console.WriteLine("Hello");
+            Console.WriteLine("Hello1");
+        }
+        public void Show2()
+        {
+            Console.WriteLine("Hello2");
         }
         public static void Main()
         {
@@ -33,11 +37,16 @@ namespace PracticeTest
             };
             getAnonymous(510);
 
-
-            GetDetails callfuncwithDelegate = new GetDetails(new Program().Details);
+            //singlecast
+            GetDetails callfuncwithDelegatesinglecast = new GetDetails(new Program().Show1);
+            callfuncwithDelegatesinglecast();
+            //multicaste delegates
+            GetDetails callfuncwithDelegate = new GetDetails(new Program().Show1);
+            callfuncwithDelegate += new GetDetails(new Program().Show2);
             callfuncwithDelegate();
+
             Console.ReadKey();
-            
+
         }
     }
 }
